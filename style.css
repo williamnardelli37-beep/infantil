@@ -1,0 +1,225 @@
+/* --- 1. CONFIGURAÇÕES GERAIS --- */
+body {
+    background-color: #fffaf5; /* Creme bem clarinho, mais quente que o branco */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Detalhe de iluminação mágica no fundo */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100vh;
+    background: radial-gradient(circle at 80% 20%, rgba(255, 223, 186, 0.4) 0%, transparent 40%),
+                radial-gradient(circle at 20% 80%, rgba(186, 225, 255, 0.3) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* --- 2. BANNER RESPONSIVO (ESTILO NUVEM/DOCE) --- */
+.admin-banner {
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 50px 40px;
+    /* Gradiente suave entre azul céu e rosa marshmallow */
+    background: linear-gradient(135deg, #e0f2fe 0%, #fef3c7 50%, #fce7f3 100%);
+    border-radius: 50px; /* Bordas mais arredondadas para parecer fofinho */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+    position: relative;
+    overflow: hidden;
+    border: 6px solid #ffffff; /* Borda branca grossa estilo adesivo */
+    box-sizing: border-box;
+}
+
+.admin-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.admin-content h1 {
+    flex: 1;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    margin: 0;
+    color: #6366f1; /* Roxo lúdico */
+    text-shadow: 2px 2px 0px #ffffff;
+}
+
+.admin-description {
+    flex: 1;
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    line-height: 1.6;
+    color: #4b5563;
+    font-weight: 500;
+}
+
+/* --- 3. CARROSSEL (ESTILO GALERIA MÁGICA) --- */
+.carrossel-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1300px;
+    margin: 20px auto;
+}
+
+.imgg {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    gap: 25px;
+    padding: 30px 50px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.imgg::-webkit-scrollbar { display: none; }
+
+.imgg img {
+    flex: 0 0 240px;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 35px !important; /* Bordas bem redondas nas fotos */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08); 
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    scroll-snap-align: center;
+    border: 4px solid white;
+}
+
+.imgg img:hover { 
+    transform: scale(1.08) rotate(2deg); /* Leve inclinação ao passar o mouse */
+    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+}
+
+/* --- 4. SETAS (MAIS VISÍVEIS E DIVERTIDAS) --- */
+.seta-decorativa {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 3.5rem;
+    color: #fbbf24; /* Amarelo sol */
+    z-index: 10;
+    pointer-events: none;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+}
+
+.seta-esq { left: 10px; animation: moverEsq 2s infinite ease-in-out; }
+.seta-dir { right: 10px; animation: moverDir 2s infinite ease-in-out; }
+
+@keyframes moverEsq {
+    0%, 100% { transform: translate(0, -50%); }
+    50% { transform: translate(-15px, -50%); opacity: 0.8; }
+}
+
+@keyframes moverDir {
+    0%, 100% { transform: translate(0, -50%); }
+    50% { transform: translate(15px, -50%); opacity: 0.8; }
+}
+
+/* --- 5. GRID DE BOTÕES --- */
+.botoes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+    padding: 40px 5%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* --- 6. AJUSTES MOBILE --- */
+@media (max-width: 768px) {
+    .admin-banner {
+        width: 92%;
+        padding: 40px 25px;
+        border-radius: 40px;
+    }
+
+    .admin-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .admin-content h1 { font-size: 2.2rem; }
+
+    .imgg img {
+        flex: 0 0 200px;
+        height: 280px;
+    }
+
+    .seta-decorativa { display: none; }
+}
+/* --- 7. SEÇÃO DE COMPRA INFANTIL --- */
+.compra-infantil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(240,249,255,1) 100%);
+    margin-top: 20px;
+}
+
+.compra-infantil h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: #4f46e5; /* Roxo vibrante */
+    margin-bottom: 10px;
+}
+
+.compra-infantil p {
+    font-size: 1.2rem;
+    color: #64748b;
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+
+.btn-infantil {
+    display: inline-block;
+    padding: 20px 50px;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5253 100%); /* Vermelho/Rosa alegre */
+    color: #ffffff !important;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    border-radius: 100px; /* Formato de pílula total */
+    box-shadow: 0 10px 0px #c0392b; /* Sombra sólida que dá efeito 3D */
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+    animation: pulsar 2s infinite;
+}
+
+.btn-infantil:hover {
+    transform: translateY(3px); /* Ao clicar/passar o mouse, ele "afunda" */
+    box-shadow: 0 5px 0px #c0392b;
+    background: linear-gradient(135deg, #ee5253 0%, #ff6b6b 100%);
+}
+
+.btn-infantil:active {
+    transform: translateY(8px);
+    box-shadow: 0 0px 0px #c0392b;
+}
+
+/* Animação para o botão ficar "vivo" na tela */
+@keyframes pulsar {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Ajuste para Mobile */
+@media (max-width: 768px) {
+    .btn-infantil {
+        padding: 15px 30px;
+        font-size: 1.1rem;
+    }
+}
