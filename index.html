@@ -6,6 +6,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>infantil sebo</title>
+
+    <style>
+        /* Container da Galeria Moderna */
+        .galeria-wrapper {
+            position: relative;
+            max-width: 1200px; /* Ajuste conforme seu layout */
+            margin: 40px auto;
+            display: flex;
+            align-items: center;
+        }
+
+        #galeria {
+            display: flex;
+            gap: 25px;
+            overflow-x: hidden; /* Esconde a barra feia */
+            scroll-behavior: smooth;
+            padding: 20px 10px;
+        }
+
+        #galeria img {
+            height: 350px; /* Tamanho moderno para destaque */
+            flex-shrink: 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        #galeria img:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Botões Estilo Minimalista Moderno */
+        .btn-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 55px;
+            height: 55px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.8); /* Efeito vidro */
+            backdrop-filter: blur(5px);
+            color: #333;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Degradê Amarelo Fraco no Hover */
+        .btn-nav:hover {
+            background: linear-gradient(135deg, #fff9c4 0%, #ffffff 100%);
+            box-shadow: 0 8px 25px rgba(255, 235, 59, 0.3);
+            width: 65px;
+            height: 65px;
+        }
+
+        .btn-prev { left: -25px; }
+        .btn-next { right: -25px; }
+
+        /* Ajuste para mobile: se a tela for pequena, os botões entram um pouco */
+        @media (max-width: 768px) {
+            .btn-prev { left: 10px; }
+            .btn-next { right: 10px; }
+        }
+    </style>
 </head>
 <body>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@800&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
@@ -16,19 +86,44 @@
         <span>ao espaço infantil</span>
     </h2>
 </div>
-        <div class="imgg" id="galeria">
-            <img src="instagram-pro.jpg-2.png" alt="">
-            <img src="instagram-pro.jpg-3.png" alt="">
-            <img src="instagram-pro.jpg-4.png" alt="">
-            <img src="instagram-pro.jpg-5.png" alt="">
-            <img src="instagram-pro.jpg-4.png" alt="">
-            <img src="instagram-pro.jpg-35.png" alt="">
-        </div>
 
-        <div class="compra-infantil">
+<div class="galeria-wrapper">
+    <button class="btn-nav btn-prev" onclick="scrollGaleria(-1)" aria-label="Anterior">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    
+    <div class="imgg" id="galeria">
+        <img src="instagram-pro.jpg-2.png" alt="">
+        <img src="instagram-pro.jpg-3.png" alt="">
+        <img src="instagram-pro.jpg-4.png" alt="">
+        <img src="instagram-pro.jpg-5.png" alt="">
+        <img src="instagram-pro.jpg-4.png" alt="">
+        <img src="instagram-pro.jpg-35.png" alt="">
+    </div>
+
+    <button class="btn-nav btn-next" onclick="scrollGaleria(1)" aria-label="Próximo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+</div>
+
+<div class="compra-infantil">
     <h1>🚀 Pronto para começar essa aventura?</h1>
     <p>Escolha seus livros favoritos e receba a magia em casa!</p>
     <a href="https://sebo-so-ler.base44.app/" class="btn-infantil">Quero meus livros agora! ➔</a>
 </div>
+
+<script>
+    function scrollGaleria(direcao) {
+        const galeria = document.getElementById('galeria');
+        // Calcula quanto deslizar (ajustado para a largura de uma imagem + gap)
+        const scrollAmount = 350; 
+        
+        galeria.scrollBy({
+            left: direcao * scrollAmount,
+            behavior: 'smooth'
+        });
+    }
+</script>
+
 </body>
 </html>
