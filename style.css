@@ -20,44 +20,79 @@ body::before {
 }
 
 /* --- 2. BANNER RESPONSIVO (ESTILO NUVEM/DOCE) --- */
-.admin-banner {
-    width: 90%;
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 50px 40px;
-    /* Gradiente suave entre azul céu e rosa marshmallow */
-    background: linear-gradient(135deg, #e0f2fe 0%, #fef3c7 50%, #fce7f3 100%);
-    border-radius: 50px; /* Bordas mais arredondadas para parecer fofinho */
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
-    position: relative;
-    overflow: hidden;
-    border: 6px solid #ffffff; /* Borda branca grossa estilo adesivo */
-    box-sizing: border-box;
-}
-
-.admin-content {
+.header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 30px;
+    padding: 60px 10%;
+    background: radial-gradient(circle at 80% 20%, rgba(255, 223, 186, 0.4) 0%, transparent 40%),
+                radial-gradient(circle at 20% 80%, rgba(186, 225, 255, 0.3) 0%, transparent 40%);
 }
 
-.admin-content h1 {
-    flex: 1;
+.header-container h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    line-height: 1.1;
+    font-size: clamp(2.2rem, 6vw, 3.8rem);
+    color: #2c1e14;
     margin: 0;
-    color: #6366f1; /* Roxo lúdico */
-    text-shadow: 2px 2px 0px #ffffff;
 }
 
-.admin-description {
-    flex: 1;
-    font-size: clamp(1rem, 1.5vw, 1.25rem);
-    line-height: 1.6;
-    color: #4b5563;
-    font-weight: 500;
+.header-container h2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: clamp(1rem, 3vw, 1.8rem);
+    color: #8b4513;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 380px; /* Largura mínima para o texto não quebrar */
+    height: 160px;    /* Altura para a imagem quadrada */
+}
+
+/* Estilo do TEXTO */
+.header-container h2 span {
+    position: absolute;
+    white-space: nowrap;
+    animation: blurCiclo 4.0s infinite ease-in-out;
+}
+
+/* Estilo da IMAGEM (Quadrada) */
+.header-container h2::after {
+    content: "";
+    position: absolute;
+    width: 150px; 
+    height: 150px;
+    background-image: url('icone\ sebo\ .png'); /* Insira sua imagem aqui */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+    opacity: 0;
+    filter: blur(15px);
+    /* A animação da imagem é a mesma, mas atrasada em 2 segundos (metade do ciclo) */
+    animation: blurCiclo 4.0s infinite ease-in-out 2.0s;
+}
+
+/* ANIMAÇÃO DE DESFOQUE (Entrada, Pausa, Saída) */
+@keyframes blurCiclo {
+    0% {
+        opacity: 0;
+        filter: blur(15px);
+        transform: scale(0.95);
+    }
+    10%, 40% {
+        opacity: 1;
+        filter: blur(0px); /* Totalmente nítido por 2 segundos */
+        transform: scale(1);
+    }
+    50%, 100% {
+        opacity: 0;
+        filter: blur(15px);
+        transform: scale(0.95);
+    }
 }
 
 /* --- 3. CARROSSEL (ESTILO GALERIA MÁGICA) --- */
